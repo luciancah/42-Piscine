@@ -6,9 +6,11 @@
 /*   By: jinhlee <jinhlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:02:15 by jinhlee           #+#    #+#             */
-/*   Updated: 2022/02/10 15:09:08 by jinhlee          ###   ########seoul.kr  */
+/*   Updated: 2022/02/13 19:22:04 by jinhlee          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <unistd.h>
 
 void	ft_putchar(char c)
 {

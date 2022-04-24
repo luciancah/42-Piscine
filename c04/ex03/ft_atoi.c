@@ -6,11 +6,9 @@
 /*   By: jinhlee <jinhlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 15:07:37 by jinhlee           #+#    #+#             */
-/*   Updated: 2022/02/13 19:19:42 by jinhlee          ###   ########seoul.kr  */
+/*   Updated: 2022/02/13 19:22:10 by jinhlee          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include<stdio.h>
 
 int	ft_atoi(char *str)
 {

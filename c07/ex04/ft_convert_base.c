@@ -6,14 +6,14 @@
 /*   By: jinhlee <jinhlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:37:01 by jinhlee           #+#    #+#             */
-/*   Updated: 2022/02/17 15:17:11 by jinhlee          ###   ########seoul.kr  */
+/*   Updated: 2022/02/19 11:41:00 by jinhlee          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 int		_arr_len(int num, int base_len);
-char	*ft_putnbr_base(int nbr, char *base);
+char	*ft_putnbr_base(int nbr, char *base, int base_count);
 
 int	_base_count(char *base)
 {
@@ -27,7 +27,7 @@ int	_base_count(char *base)
 		if (base[i] == ' ' || base[i] == '+' || base[i] == '-')
 			return (0);
 		else if (base[i] == '\n' || base[i] == '\t' || \
-			base[i] == '\v' || base[i] == '\r')
+			base[i] == '\v' || base[i] == '\r' || base[i] == '\f')
 			return (0);
 		j = 0;
 		while (j < i)

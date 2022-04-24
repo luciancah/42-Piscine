@@ -6,12 +6,11 @@
 /*   By: jinhlee <jinhlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 11:21:13 by jinhlee           #+#    #+#             */
-/*   Updated: 2022/02/17 13:43:06 by jinhlee          ###   ########seoul.kr  */
+/*   Updated: 2022/02/19 13:29:04 by jinhlee          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdlib.h>
-#include<stdio.h>
+#include <stdlib.h>
 
 int	_strlen(char *str)
 {

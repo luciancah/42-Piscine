@@ -6,7 +6,7 @@
 /*   By: jinhlee <jinhlee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 21:48:49 by jinhlee           #+#    #+#             */
-/*   Updated: 2022/02/17 17:20:46 by jinhlee          ###   ########seoul.kr  */
+/*   Updated: 2022/02/19 13:29:17 by jinhlee          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	_strlen(char *str)
 	return (len);
 }
 
-char	*ft_strdup(char *src)
+char	*_strdup(char *src)
 {
 	char	*dup;
 	int		i;
@@ -31,103 +31,90 @@ char	*ft_strdup(char *src)
 	i = 0;
 	str_len = _strlen(src);
 	dup = (char *)malloc((str_len + 1) * sizeof(char));
-	while (i < str_len)
+	if (!dup)
+		return (0);
+	while (src[i])
 	{
 		dup[i] = src[i];
 		i++;
 	}
-	src[i] = '\0';
+	dup[i] = '\0';
 	return (dup);
 }
 
-int	_strcnt(char *str, char *charset)
+int	_wc(char *str, int len)
 {
-	int	str_cnt;
-	int	search_cnt;
 	int	i;
-	int	j;
+	int	count;
+	int	flag;
 
-	str_cnt = 0;
-	search_cnt = 0;
 	i = 0;
-	while (str[i])
+	count = 0;
+	flag = 1;
+	if (str[0] == '\0')
+		flag = 0;
+	while (i < len)
 	{
-		j = 0;
-		search_cnt++;
-		while (charset[j])
+		if (str[i] == '\0')
+			flag = 1;
+		else
 		{
-			if(search_cnt > 1)
-				if (str[i] == charset[j])
-				{
-					str_cnt++;
-					search_cnt = 0;
-					break;
-				}
-			j++;
+			if (flag == 1)
+				count++;
+			flag = 0;
 		}
 		i++;
 	}
-	return (str_cnt);
+	return (count);
 }
 
-void _strinit(char *str_src, char *str_dest, char *charset, int index)
+char	*_editstr(char *str, char *charset, int len)
 {
-	int	str_cnt;
-	int	search_cnt;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*temp;
 
-	str_cnt = 0;
-	search_cnt = 0;
 	i = 0;
-	while (str[i])
+	temp = _strdup(str);
+	while (i < _strlen(charset))
 	{
 		j = 0;
-		search_cnt++;
-		while (charset[j])
+		while (j < len)
 		{
-			if(search_cnt > 1)
-				if (str[i] == charset[j])
-				{
-
-					search_cnt = 0;
-					break;
-				}
+			if (temp[j] == charset[i])
+				temp[j] = '\0';
 			j++;
 		}
 		i++;
 	}
+	return (temp);
 }
 
 char	**ft_split(char *str, char *charset)
 {
-	int		str_count;
 	int		i;
-	char	**split;
+	int		index;
+	int		str_len;
+	char	*newstr;
+	char	**answer;
 
-	str_count = _strcnt(str, charset);
-	split = (char **)malloc(str_count * sizeof(char *));
-	if (!split)
+	str_len = _strlen(str);
+	newstr = _editstr(str, charset, str_len);
+	answer = (char **)malloc(sizeof(char *) * (_wc(newstr, str_len) + 1));
+	if (!answer)
 		return (0);
 	i = 0;
-	while (i < str_count)
-	{
-		_strinit(str, charset, i);
-	}
-
-
-}
-
-int	main(int argc, char **argv)
-{
-	int		index;
-	char	**split;
-	(void)	argc;
-	split = ft_split(argv[1], argv[2]);
 	index = 0;
-	while (split[index])
+	while (i < str_len)
 	{
-		printf("%s\n", split[index]);
-		index++;
+		if (newstr[i] == '\0' || _strlen(newstr + i) == 0)
+		{
+			i++;
+			continue ;
+		}
+		answer[index++] = _strdup(newstr + i);
+		i += _strlen(newstr + i);
 	}
+	answer[index] = 0;
+	return (answer);
 }
